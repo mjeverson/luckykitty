@@ -1,3 +1,5 @@
+.idea/
+_python/
 # Logs
 logs
 *.log
