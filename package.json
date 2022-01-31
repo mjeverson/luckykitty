@@ -1,0 +1,13 @@
+{
+  "name": "Lucky Kitty",
+  "version": "1.0.0",
+  "description": "The Famous Lucky Kitty Slot Machine!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Mike Everson",
+  "devDependencies": {
+    "electron": "^16.0.8"
+  }
+}
