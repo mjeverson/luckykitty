@@ -1,1 +1,0 @@
-// https://azukidigital.com/blog/2019/electron-application-on-raspberry-pi/

@@ -1,13 +1,15 @@
 {
-  "name": "Lucky Kitty",
+  "name": "lucky-kitty",
   "version": "1.0.0",
   "description": "The Famous Lucky Kitty Slot Machine!",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "sass": "sass styles/main.scss:styles/main.css"
   },
   "author": "Mike Everson",
   "devDependencies": {
-    "electron": "^16.0.8"
+    "electron": "^16.0.8",
+    "sass": "^1.49.0"
   }
 }
