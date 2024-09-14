@@ -450,17 +450,18 @@ void winDom() {
 }
 
 void winBelltent() {
-  // Green and white
   int lightThreadId = threads.addThread(rainbowCycleThread);
   int tentacleThreadId = threads.addThread(doTentacle);
   waitForThread(tentacleThreadId);
+  Serial.write(CMD_DONE);
+  waitForCommand(CMD_DONE);
 
   setCoinLightColor(255, 255, 0, 0);
   delay(500);
   doCoin();
 
-  Serial.write(CMD_DONE);
-  waitForCommand(CMD_DONE);
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
   threads.kill(lightThreadId);
 }
 

@@ -455,7 +455,11 @@ class Game:
                     self.belltent.play()
                     self.sendandwait(self.winBelltent)
 
+                    # Wait for belltent track to finish
+                    while pygame.mixer.get_busy():
+                        pass
                     ser.write(self.cmdDone)
+
                     self.coin.play()
                     while pygame.mixer.get_busy():
                         pass
@@ -501,7 +505,7 @@ class Game:
         while not (ser.in_waiting > 0):
             pass
             
-        byte = ser.read(1);
+        byte = ser.read(1)
         if not byte == self.cmdDone:
             print("Got an unexpected command")
         print("Arduino finished!")
