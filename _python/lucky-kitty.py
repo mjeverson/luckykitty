@@ -527,7 +527,7 @@ if __name__ == "__main__":
     pi = False
     debug = False
     # Override this to test a specific win state, 0-8
-    forcewin = 0
+    forcewin = None
     
     try:
         short = "hvfpd"

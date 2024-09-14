@@ -34,7 +34,7 @@ int sols[NUM_SOLS] = {SOL1, SOL2, SOL3, SOL4};
 //#define WIN_TENTACLE 0x01
 //#define WIN_COIN 0x02
 //#define WIN_FIRE 0x03
-//#define WIN_CHEESE 0x04
+//#define WIN_CHEESE 0x04c
 //#define WIN_PINCHY 0x05
 //#define WIN_JACKPOT 0x06
 
@@ -460,8 +460,6 @@ void winBelltent() {
   delay(500);
   doCoin();
 
-//   Serial.write(CMD_DONE);
-//   waitForCommand(CMD_DONE);
   threads.kill(lightThreadId);
 }
 
@@ -480,27 +478,8 @@ void winNix() {
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
   threads.kill(lightThreadId);
-//   delay(1500);
-//   // teal and white
-//   // Pulsing white
-//   int lightThreadId = threads.addThread(catsCycleThread);
-//
-//   Serial.write(CMD_DONE);
-//   waitForCommand(CMD_DONE);
-//
-//   threads.kill(lightThreadId);
-//   setCoinLightColor(255, 255, 0, 0);
-//
-//   // dispense 3 coins
-//   for(int i = 0; i < 3; i++){
-//     delay(500);
-//     doCoin();
-//   }
-//
-//   waitForCommand(CMD_DONE);
 }
 
-//todo:might wanna tweak this a bit
 void winTarna() {
   // Rainbow
   int lightThreadId = threads.addThread(tarnaCycleThread);
@@ -817,10 +796,10 @@ uint32_t Wheel(byte WheelPos) {
 
 uint32_t PoutineWheel(byte WheelPos) {
  if(WheelPos < 128) {
-  return strip.Color(0, 0, 128 + WheelPos, 128 - WheelPos);
+  return strip.Color(0, 0, 255, WheelPos / 4);
  } else {
   WheelPos -= 128;
-  return strip.Color(0, 0, 255 - WheelPos, 128 - WheelPos);
+  return strip.Color(0, 0, 255, WheelPos / 4);
  }
 }
 
@@ -832,15 +811,6 @@ uint32_t BastWheel(byte WheelPos) {
    return strip.Color(255, 0, (128 - WheelPos) / 2);
   }
 }
-
-//uint32_t SheraWheel(byte WheelPos) {
-//  if(WheelPos < 128) {
-//   return strip.Color(255, 255, WheelPos);
-//  } else {
-//   WheelPos -= 128;
-//   return strip.Color(255, 255, 128 - WheelPos);
-//  }
-//}
 
 uint32_t SheraWheel(byte WheelPos) {
   if(WheelPos < 85) {
@@ -863,28 +833,28 @@ uint32_t JabbaWheel(byte WheelPos) {
   }
 }
 
-// orange and white?
+// orange and white
 uint32_t CheeseWheel(byte WheelPos) {
   if(WheelPos < 128) {
-   return strip.Color(36, 128 + WheelPos, 0, 128 - WheelPos);
+   return strip.Color(255, 36, 0, WheelPos);
   } else {
    WheelPos -= 128;
-   return strip.Color(36, 255 - WheelPos, 0, 128 - WheelPos);
+   return strip.Color(255, 36, 0, WheelPos);
   }
 }
 
 uint32_t TarnaWheel(byte WheelPos) {
   if(WheelPos < 64) {
-   return strip.Color(0, 255 - WheelPos * 4, 255 - WheelPos * 4, 0);
+   return strip.Color(191 + WheelPos, 0, 191 + WheelPos, 0);
   } else if(WheelPos < 128) {
    WheelPos -= 64;
-   return strip.Color(0, 0, 255 - WheelPos * 4, 0);
+   return strip.Color(0, 0, 191 + WheelPos, 0);
   } else if(WheelPos < 192) {
    WheelPos -= 128;
-   return strip.Color(36, 255 - WheelPos * 4, 0, 0);
+   return strip.Color(191 + WheelPos, 36, 0, 0);
   } else {
    WheelPos -= 192;
-   return strip.Color(0, 0, 255 - WheelPos * 4);
+   return strip.Color(0, 0, 0, 191 + WheelPos);
   }
 }
 
