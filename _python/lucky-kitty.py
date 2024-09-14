@@ -5,6 +5,7 @@
 # OSX Testing
 # python3 lucky-kitty.py -d
 # Override forcewin = None to force a particular winstate for testing
+# Runs on startup via ~/.config/autostart/lk.desktop
 
 import pygame
 from pygame.locals import *
