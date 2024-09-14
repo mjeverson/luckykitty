@@ -429,7 +429,7 @@ class Game:
 #                     
 #                     self.sendandwait(self.cmdDone)
 
-                # Emma
+                # Demma wedding
                 if index == 0:
                     self.emma.play()
                     self.sendandwait(self.winEmma)
