@@ -523,11 +523,11 @@ if __name__ == "__main__":
     pi = False
     debug = False
     # Override this to test a specific win state, 0-8
-    forcewin = None
+    forcewin = 0
     
     try:
-        short = "hvfpdw"
-        long = ["help", "version", "fullscreen", "pi", "debug", "win"]
+        short = "hvfpd"
+        long = ["help", "version", "fullscreen", "pi", "debug"]
         opts = getopt(argv[1:], short, long)[0]
     except GetoptError as e:
         print("Problem getting the options")
@@ -547,8 +547,6 @@ if __name__ == "__main__":
             pi = True
         if opt in ("-d", "--debug"):
             debug = True
-        if opt in ("-w", "--win"):
-            forcewin = int(arg)
                 
          
     # Setup serial communication
