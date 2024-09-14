@@ -50,19 +50,26 @@ class Game:
 #         self.jackpot = pygame.mixer.Sound("_assets/_sounds/nyan16.wav")
         
         # Arno
-        self.bast = pygame.mixer.Sound("_assets/_sounds/bast.wav")
-        self.poutine = pygame.mixer.Sound("_assets/_sounds/poutine.wav")
+#         self.bast = pygame.mixer.Sound("_assets/themes/arno/sounds/bast.wav")
+#         self.poutine = pygame.mixer.Sound("_assets/themes/arno/sounds/poutine.wav")
         
         # Emma
-        self.shera = pygame.mixer.Sound("_assets/Emma Theme/Sounds/shera.wav")
-        self.nitrous = pygame.mixer.Sound("_assets/Emma Theme/Sounds/nitrous.wav")
-        self.jabba = pygame.mixer.Sound("_assets/Emma Theme/Sounds/jabba.wav")
-        self.cheese = pygame.mixer.Sound("_assets/Emma Theme/Sounds/cheese.wav")
-        self.gremlin = pygame.mixer.Sound("_assets/Emma Theme/Sounds/gremlin.wav")
-#         self.insurance = pygame.mixer.Sound("_assets/Emma Theme/Sounds/nyan16.wav")
-        self.moar = pygame.mixer.Sound("_assets/Emma Theme/Sounds/moar.wav")
-#         self.princess = pygame.mixer.Sound("_assets/Emma Theme/Sounds/reel16.wav")
-        self.cats = pygame.mixer.Sound("_assets/Emma Theme/Sounds/nixnq.wav")
+#         self.shera = pygame.mixer.Sound("_assets/themes/emma/sounds/shera.wav")
+#         self.nitrous = pygame.mixer.Sound("_assets/themes/emma/sounds/nitrous.wav")
+#         self.jabba = pygame.mixer.Sound("_assets/themes/emma/sounds/jabba.wav")
+#         self.cheese = pygame.mixer.Sound("_assets/themes/emma/sounds/cheese.wav")
+#         self.gremlin = pygame.mixer.Sound("_assets/themes/emma/sounds/gremlin.wav")
+#         self.moar = pygame.mixer.Sound("_assets/themes/emma/sounds/moar.wav")
+#         self.cats = pygame.mixer.Sound("_assets/themes/emma/sounds/nixnq.wav")
+
+        # Demma Wedding
+        self.emma = pygame.mixer.Sound("_assets/themes/emma/sounds/1-emma.wav")
+        self.dom = pygame.mixer.Sound("_assets/themes/emma/sounds/2-dom.wav")
+        self.belltent = pygame.mixer.Sound("_assets/themes/emma/sounds/3-belltent.wav")
+        self.cheesy = pygame.mixer.Sound("_assets/themes/emma/sounds/4-cheesypotatoes.wav")
+        self.nix = pygame.mixer.Sound("_assets/themes/emma/sounds/5-nixandq.wav")
+        self.tarna = pygame.mixer.Sound("_assets/themes/emma/sounds/6-tarna.wav")
+        self.penrose = pygame.mixer.Sound("_assets/themes/emma/sounds/7-penrose.wav")
         
         # Default
         self.cmdLoss = b'\x07'
@@ -80,15 +87,22 @@ class Game:
 #         self.winPoutine = b'\x21'
 
         # Emma
-        self.winShera = b'\x30'
-        self.winNitrous = b'\x31'
-        self.winJabba = b'\x32'
-        self.winCheese = b'\x33'
-        self.winGremlin = b'\x34'
-#         self.winInsurance = b'\x35'
-        self.winMoar = b'\x36'
-#         self.winPrincess = b'\x37'
-        self.winCats = b'\x38'
+#         self.winShera = b'\x30'
+#         self.winNitrous = b'\x31'
+#         self.winJabba = b'\x32'
+#         self.winCheese = b'\x33'
+#         self.winGremlin = b'\x34'
+#         self.winMoar = b'\x36'
+#         self.winCats = b'\x38'
+
+        # Demma Wedding
+        self.winEmma = b'\x40'
+        self.winDom = b'\x41'
+        self.winBelltent = b'\x42'
+        self.winCheesy = b'\x43'
+        self.winNix = b'\x44'
+        self.winTarna = b'\x45'
+        self.winPenrose = b'\x46'
         
         # Maybe change this to just be the one black line across
         self.windowlayer = pygame.image.load("_assets/_images/gradient.png")
@@ -115,35 +129,29 @@ class Game:
 #                     self.imgbast,
 #                     self.imgpoutine]
 
-        # Emma
-        self.imgpaths = ["_assets/Emma Theme/Images/0001_shera.png",
-                         "_assets/Emma Theme/Images/0004_nitrous.png",
-                         "_assets/Emma Theme/Images/0000_jabba.png",
-                         "_assets/Emma Theme/Images/0002_cheese.png",
-                         "_assets/Emma Theme/Images/gremlin.png",
-                         "_assets/Emma Theme/Images/0006_insurance.png",
-                         "_assets/Emma Theme/Images/0007_moar.png",
-                         "_assets/Emma Theme/Images/0005_brat.png",
-                         "_assets/Emma Theme/Images/0003_nixnq.png"]
-        self.imgShera = pygame.image.load(self.imgpaths[0])
-        self.imgNitrous = pygame.image.load(self.imgpaths[1])
-        self.imgJabba = pygame.image.load(self.imgpaths[2])
-        self.imgCheese = pygame.image.load(self.imgpaths[3])
-        self.imgGremlin = pygame.image.load(self.imgpaths[4])
-        self.imgInsurance = pygame.image.load(self.imgpaths[5])
-        self.imgMoar = pygame.image.load(self.imgpaths[6])
-        self.imgBrat = pygame.image.load(self.imgpaths[7])
-        self.imgCats = pygame.image.load(self.imgpaths[8])
+        # Demma Wedding
+        self.imgpaths = ["_assets/themes/demma_wedding/images/1-emma.png",
+                        "_assets/themes/demma_wedding/images/2-dom.png",
+                        "_assets/themes/demma_wedding/images/3-belltent.png",
+                        "_assets/themes/demma_wedding/images/4-cheesypotatoes.png",
+                        "_assets/themes/demma_wedding/images/5-nixandq.png",
+                        "_assets/themes/demma_wedding/images/6-tarna.png",
+                        "_assets/themes/demma_wedding/images/7-penrose.png"]
+        self.imgEmma = pygame.image.load(self.imgpaths[0])
+        self.imgDom = pygame.image.load(self.imgpaths[1])
+        self.imgBelltent = pygame.image.load(self.imgpaths[2])
+        self.imgCheesy = pygame.image.load(self.imgpaths[3])
+        self.imgNix = pygame.image.load(self.imgpaths[4])
+        self.imgTarna = pygame.image.load(self.imgpaths[5])
+        self.imgPenrose = pygame.image.load(self.imgpaths[6])
         
-        self.img = [self.imgShera,
-                    self.imgNitrous,
-                    self.imgJabba,
-                    self.imgCheese,
-                    self.imgGremlin,
-                    self.imgInsurance,
-                    self.imgMoar,
-                    self.imgBrat,
-                    self.imgCats]
+        self.img = [self.imgEmma,
+                    self.imgDom,
+                    self.imgBelltent,
+                    self.imgCheesy,
+                    self.imgNix,
+                    self.imgTarna,
+                    self.imgPenrose]
 
         # Randomize and update the images without actually doing the roll 
         self.randi()
@@ -293,24 +301,24 @@ class Game:
         ##todo(mje): tweak the odds for outcomes
         rand = randrange(1, 100)
         outcome = None
-        if 1 <= rand <= 8:
+        if 1 <= rand <= 10:
             outcome = self.imgpaths[0]
-        elif 9 <= rand <= 15:
+        elif 11 <= rand <= 20:
             outcome = self.imgpaths[1]
-        elif 16 <= rand <= 22:
+        elif 21 <= rand <= 30:
             outcome = self.imgpaths[2]
-        elif 23 <= rand <= 29:
+        elif 31 <= rand <= 40:
             outcome = self.imgpaths[3]
-        elif 30 <= rand <= 36:
+        elif 41 <= rand <= 50:
             outcome = self.imgpaths[4]
-        elif 37 <= rand <= 43:
+        elif 51 <= rand <= 60:
             outcome = self.imgpaths[5]
-        elif 44 <= rand <= 50:
+        elif 61 <= rand <= 70:
             outcome = self.imgpaths[6]
-        elif 51 <= rand <= 57:
-            outcome = self.imgpaths[7]
-        elif 58 <= rand <= 65:
-            outcome = self.imgpaths[8]
+#         elif 51 <= rand <= 57:
+#             outcome = self.imgpaths[7]
+#         elif 58 <= rand <= 65:
+#             outcome = self.imgpaths[8]
         
         #DEBUG: Uncomment this line and comment the rest to test a specific outcome
         if self.forcewin is not None:
@@ -423,61 +431,56 @@ class Game:
 
                 # Emma
                 if index == 0:
-                    self.shera.play()
-                    print("sending win shera")
-                    self.sendandwait(self.winShera)
-                    print("sending done")
-                    self.sendandwait(self.cmdDone) 
-                elif index == 1:
-                    self.nitrous.play()
-                    self.sendandwait(self.winNitrous)
-                    self.sendandwait(self.cmdDone)
-                elif index == 2:
-                    self.jabba.play()
-                    self.sendandwait(self.winJabba)
-                    self.sendandwait(self.cmdDone)
-                elif index == 3:
-                    self.cheese.play()
-                    self.sendandwait(self.winCheese)
-                    self.sendandwait(self.cmdDone)
-                elif index == 4:
-                    self.gremlin.play()
-                    # Do all the lights and fire
-                    self.sendandwait(self.winGremlin) 
-                    
-                    ser.write(self.cmdDone)
-                    # play the coin sound and dispense a coin 3 times
-                    for _ in range(3):
-                        self.coin.play()
-                        while pygame.mixer.get_busy():
-                            pass
+                    self.emma.play()
+                    self.sendandwait(self.winEmma)
 
-                    self.oneup.play()
-                    while pygame.mixer.get_busy():
-                        pass
-
-                    self.sendandwait(self.cmdDone)
-                elif index == 5:
-                    self.loss.play()
-                    self.sendandwait(self.cmdLoss)
-                    self.sendandwait(self.cmdDone)
-                elif index == 6:
-                    self.moar.play()
-                    self.sendandwait(self.winMoar)
-    
                     ser.write(self.cmdDone)
                     self.coin.play()
                     while pygame.mixer.get_busy():
                         pass
-                    
+
+                    self.sendandwait(self.cmdDone) 
+                elif index == 1:
+                    self.dom.play()
+                    self.sendandwait(self.winDom)
+
+                    ser.write(self.cmdDone)
+                    self.coin.play()
+                    while pygame.mixer.get_busy():
+                        pass
+
                     self.sendandwait(self.cmdDone)
-                elif index == 7:
-                    self.loss.play()
-                    self.sendandwait(self.cmdLoss)
+                elif index == 2:
+                    self.jabba.play()
+                    self.sendandwait(self.winBelltent)
+
+                    ser.write(self.cmdDone)
+                    self.coin.play()
+                    while pygame.mixer.get_busy():
+                        pass
+
                     self.sendandwait(self.cmdDone)
-                elif index == 8:
-                    self.cats.play()
-                    self.sendandwait(self.winCats)
+                elif index == 3:
+                    self.cheesy.play()
+                    self.sendandwait(self.winCheesy)
+                    self.sendandwait(self.cmdDone)
+                elif index == 4:
+                    self.nix.play()
+                    self.sendandwait(self.winNix)
+                    self.sendandwait(self.cmdDone)
+                elif index == 5:
+                    self.tarna.play()
+                    self.sendandwait(self.winTarna)
+
+                    ser.write(self.cmdDone)
+                    self.coin.play()
+                    while pygame.mixer.get_busy():
+                        pass
+
+                    self.sendandwait(self.cmdDone)
+                elif index == 6:
+                    self.penrose.play()
+                    self.sendandwait(self.winPenrose)
                     self.sendandwait(self.cmdDone)
             else:
                 self.loss.play()

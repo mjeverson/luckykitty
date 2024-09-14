@@ -43,15 +43,24 @@ int sols[NUM_SOLS] = {SOL1, SOL2, SOL3, SOL4};
 //#define WIN_POUTINE 0x21
 
 // Emma
-#define WIN_SHERA 0x30
-#define WIN_NITROUS 0x31
-#define WIN_JABBA 0x32
-#define WIN_CHEESE 0x33
-#define WIN_GREMLIN 0x34
-#define WIN_INSURANCE 0x35
-#define WIN_MOAR 0x36
-#define WIN_PRINCESS 0x37
-#define WIN_CATS 0x38
+// #define WIN_SHERA 0x30
+// #define WIN_NITROUS 0x31
+// #define WIN_JABBA 0x32
+// #define WIN_CHEESE 0x33
+// #define WIN_GREMLIN 0x34
+// #define WIN_INSURANCE 0x35
+// #define WIN_MOAR 0x36
+// #define WIN_PRINCESS 0x37
+// #define WIN_CATS 0x38
+
+// Demma Wedding
+#define WIN_EMMA 0x40
+#define WIN_DOM 0x41
+#define WIN_BELLTENT 0x42
+#define WIN_CHEESY 0x43
+#define WIN_NIX 0x44
+#define WIN_TARNA 0x45
+#define WIN_PENROSE 0x46
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(BOX_PIXELS + COIN_PIXELS, PIXEL, NEO_GRBW + NEO_KHZ800);
 PWMServo tentacleServo;
@@ -118,33 +127,50 @@ void loop() {
 //        winPoutine();
 //        break;
 
-      // Emma
-      case WIN_SHERA:
-        winShera();
+//       // Emma
+//       case WIN_SHERA:
+//         winShera();
+//         break;
+//       case WIN_NITROUS:
+//         winNitrous();
+//         break;
+//       case WIN_JABBA:
+//         winJabba();
+//         break;
+//       case WIN_CHEESE:
+//         winCheese();
+//         break;
+//       case WIN_GREMLIN:
+//         winGremlin();
+//         break;
+//       case WIN_MOAR:
+//         winMoar();
+//         break;
+//       case WIN_CATS:
+//         winCats();
+//         break;
+
+      // Demma Wedding
+      case WIN_EMMA:
+        winEmma();
         break;
-      case WIN_NITROUS:
-        winNitrous();
+      case WIN_DOM:
+        winDom();
         break;
-      case WIN_JABBA:
-        winJabba();
+      case WIN_BELLTENT:
+        winBelltent();
         break;
-      case WIN_CHEESE:
-        winCheese();
+      case WIN_CHEESY:
+        winCheesy();
         break;
-      case WIN_GREMLIN:
-        winGremlin();
+      case WIN_NIX:
+        winNix();
         break;
-//      case WIN_INSURANCE:
-//        winInsurance();
-//        break;
-      case WIN_MOAR:
-        winMoar();
+      case WIN_TARNA:
+        winTarna();
         break;
-//      case WIN_PRINCESS:
-//        winPrincess();
-//        break;
-      case WIN_CATS:
-        winCats();
+      case WIN_PENROSE:
+        winPenrose();
         break;
     
       case CMD_LOSS:
@@ -193,6 +219,7 @@ void winNyan() {
   threads.kill(lightThreadId);
 }
 
+// Default theme
 //void winTentacle() {
 //  // green 
 //  setBoxColor(0, 255, 0, 0);
@@ -283,7 +310,7 @@ void winNyan() {
 //  waitForCommand(CMD_DONE);
 //}
 
-// Arno
+// Arno theme
 //void winBast() {
 //  // Red + Pink
 //  int lightThreadId = threads.addThread(bastCycleThread);
@@ -320,8 +347,83 @@ void winNyan() {
 //  waitForCommand(CMD_DONE);
 //}
 
-// Emma
-void winShera() {
+// Emma theme
+// void winShera() {
+//   // White and Gold
+//   int lightThreadId = threads.addThread(sheraCycleThread);
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
+//   threads.kill(lightThreadId);
+// }
+//
+// void winNitrous() {
+//   // Rainbow
+//   int lightThreadId = threads.addThread(rainbowCycleThread);
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
+//   threads.kill(lightThreadId);
+// }
+//
+// void winJabba() {
+//   // Green and white
+//   int lightThreadId = threads.addThread(jabbaCycleThread);
+//   int tentacleThreadId = threads.addThread(doTentacle);
+//   waitForThread(tentacleThreadId);
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
+//   threads.kill(lightThreadId);
+// }
+//
+// void winCheese() {
+//   // Yellow and red
+//   int lightThreadId = threads.addThread(cheeseCycleThread);
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
+//   threads.kill(lightThreadId);
+// }
+//
+// void winGremlin() {
+//   delay(1500);
+//   // teal and white
+//   int lightThreadId = threads.addThread(rainbowCycleThread);
+//
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
+//
+//   threads.kill(lightThreadId);
+//   setCoinLightColor(255, 255, 0, 0);
+//
+//   // dispense 3 coins
+//   for(int i = 0; i < 3; i++){
+//     delay(500);
+//     doCoin();
+//   }
+//
+//   waitForCommand(CMD_DONE);
+// }
+//
+// //todo:might wanna tweak this a bit
+// void winMoar() {
+//   // Rainbow
+//   int lightThreadId = threads.addThread(rainbowCycleThread);
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
+//   setCoinLightColor(255, 255, 0, 0);
+//   delay(500);
+//   doCoin();
+//   threads.kill(lightThreadId);
+// }
+//
+// void winCats() {
+//   // Pulsing white
+//   int lightThreadId = threads.addThread(catsCycleThread);
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
+//   threads.kill(lightThreadId);
+// }
+
+// Demma Wedding
+void winEmma() {
   // White and Gold
   int lightThreadId = threads.addThread(sheraCycleThread);
   Serial.write(CMD_DONE);
@@ -329,7 +431,7 @@ void winShera() {
   threads.kill(lightThreadId);
 }
 
-void winNitrous() {
+void winDom() {
   // Rainbow
   int lightThreadId = threads.addThread(rainbowCycleThread);
   Serial.write(CMD_DONE);
@@ -337,7 +439,7 @@ void winNitrous() {
   threads.kill(lightThreadId);
 }
 
-void winJabba() {
+void winBelltent() {
   // Green and white
   int lightThreadId = threads.addThread(jabbaCycleThread);
   int tentacleThreadId = threads.addThread(doTentacle);
@@ -347,7 +449,7 @@ void winJabba() {
   threads.kill(lightThreadId);
 }
 
-void winCheese() {
+void winCheesy() {
   // Yellow and red
   int lightThreadId = threads.addThread(cheeseCycleThread);
   Serial.write(CMD_DONE);
@@ -355,11 +457,11 @@ void winCheese() {
   threads.kill(lightThreadId);
 }
 
-void winGremlin() {
+void winNix() {
   delay(1500);
   // teal and white
   int lightThreadId = threads.addThread(rainbowCycleThread);
-  
+
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
 
@@ -371,12 +473,12 @@ void winGremlin() {
     delay(500);
     doCoin();
   }
-  
+
   waitForCommand(CMD_DONE);
 }
 
 //todo:might wanna tweak this a bit
-void winMoar() {
+void winTarna() {
   // Rainbow
   int lightThreadId = threads.addThread(rainbowCycleThread);
   Serial.write(CMD_DONE);
@@ -387,7 +489,7 @@ void winMoar() {
   threads.kill(lightThreadId);
 }
 
-void winCats() {
+void winPenrose() {
   // Pulsing white
   int lightThreadId = threads.addThread(catsCycleThread);
   Serial.write(CMD_DONE);
