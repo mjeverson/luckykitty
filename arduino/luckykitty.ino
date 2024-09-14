@@ -428,22 +428,37 @@ void winEmma() {
   int lightThreadId = threads.addThread(sheraCycleThread);
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
+
+  setCoinLightColor(255, 255, 0, 0);
+  delay(500);
+  doCoin();
+
   threads.kill(lightThreadId);
 }
 
 void winDom() {
-  // Rainbow
-  int lightThreadId = threads.addThread(rainbowCycleThread);
+  // Blue and white
+  int lightThreadId = threads.addThread(poutineCycleThread);
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
+
+  setCoinLightColor(255, 255, 0, 0);
+  delay(500);
+  doCoin();
+
   threads.kill(lightThreadId);
 }
 
 void winBelltent() {
   // Green and white
-  int lightThreadId = threads.addThread(jabbaCycleThread);
+  int lightThreadId = threads.addThread(rainbowCycleThread);
   int tentacleThreadId = threads.addThread(doTentacle);
   waitForThread(tentacleThreadId);
+
+  setCoinLightColor(255, 255, 0, 0);
+  delay(500);
+  doCoin();
+
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
   threads.kill(lightThreadId);
@@ -452,46 +467,54 @@ void winBelltent() {
 void winCheesy() {
   // Yellow and red
   int lightThreadId = threads.addThread(cheeseCycleThread);
+  int tentacleThreadId = threads.addThread(doTentacle);
+  waitForThread(tentacleThreadId);
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
   threads.kill(lightThreadId);
 }
 
 void winNix() {
-  delay(1500);
-  // teal and white
-  int lightThreadId = threads.addThread(rainbowCycleThread);
-
+  int lightThreadId = threads.addThread(catsCycleThread);
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
-
   threads.kill(lightThreadId);
-  setCoinLightColor(255, 255, 0, 0);
-
-  // dispense 3 coins
-  for(int i = 0; i < 3; i++){
-    delay(500);
-    doCoin();
-  }
-
-  waitForCommand(CMD_DONE);
+//   delay(1500);
+//   // teal and white
+//   // Pulsing white
+//   int lightThreadId = threads.addThread(catsCycleThread);
+//
+//   Serial.write(CMD_DONE);
+//   waitForCommand(CMD_DONE);
+//
+//   threads.kill(lightThreadId);
+//   setCoinLightColor(255, 255, 0, 0);
+//
+//   // dispense 3 coins
+//   for(int i = 0; i < 3; i++){
+//     delay(500);
+//     doCoin();
+//   }
+//
+//   waitForCommand(CMD_DONE);
 }
 
 //todo:might wanna tweak this a bit
 void winTarna() {
   // Rainbow
-  int lightThreadId = threads.addThread(rainbowCycleThread);
+  int lightThreadId = threads.addThread(tarnaCycleThread);
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
+
   setCoinLightColor(255, 255, 0, 0);
   delay(500);
   doCoin();
+
   threads.kill(lightThreadId);
 }
 
 void winPenrose() {
-  // Pulsing white
-  int lightThreadId = threads.addThread(catsCycleThread);
+  int lightThreadId = threads.addThread(rainbowCycleThread);
   Serial.write(CMD_DONE);
   waitForCommand(CMD_DONE);
   threads.kill(lightThreadId);
@@ -604,26 +627,26 @@ void rainbowCycleThread() {
 }
 
 // Makes the white chasing blue marquee
-//void poutineCycleThread() {
-//  uint16_t i;
-//  uint16_t j = 0;
-//
-//  while(true){
-//    if (j > 255){
-//      j = 0;
-//    }
-//
-//    for(i=COIN_PIXELS; i< strip.numPixels(); i++) {
-//      strip.setPixelColor(i, PoutineWheel(((i * 256 / strip.numPixels()) + j) & 255));
-//    }
-//    
-//    strip.show();
-//    j += 5;
-//
-//    threads.delay(50);
-//  }
-//}
-//
+void poutineCycleThread() {
+ uint16_t i;
+ uint16_t j = 0;
+
+ while(true){
+   if (j > 255){
+     j = 0;
+   }
+
+   for(i=COIN_PIXELS; i< strip.numPixels(); i++) {
+     strip.setPixelColor(i, PoutineWheel(((i * 256 / strip.numPixels()) + j) & 255));
+   }
+
+   strip.show();
+   j += 5;
+
+   threads.delay(50);
+ }
+}
+
 //// Makes the fading ping and red marquee
 void bastCycleThread() {
   uint16_t i;
@@ -705,6 +728,27 @@ void cheeseCycleThread() {
   }
 }
 
+// Makes the white chasing blue marquee
+void tarnaCycleThread() {
+ uint16_t i;
+ uint16_t j = 0;
+
+ while(true){
+   if (j > 255){
+     j = 0;
+   }
+
+   for(i=COIN_PIXELS; i< strip.numPixels(); i++) {
+     strip.setPixelColor(i, TarnaWheel(((i * 256 / strip.numPixels()) + j) & 255));
+   }
+
+   strip.show();
+   j += 5;
+
+   threads.delay(50);
+ }
+}
+
 //void gremlinCycleThread() {
 //  uint16_t i;
 //  uint16_t j = 0;
@@ -769,16 +813,16 @@ uint32_t Wheel(byte WheelPos) {
    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
 }
-//
-//uint32_t PoutineWheel(byte WheelPos) {
-//  if(WheelPos < 128) {
-//   return strip.Color(0, 0, 128 + WheelPos, 128 - WheelPos);
-//  } else {
-//   WheelPos -= 128;
-//   return strip.Color(0, 0, 255 - WheelPos, 128 - WheelPos);
-//  } 
-//}
-//
+
+uint32_t PoutineWheel(byte WheelPos) {
+ if(WheelPos < 128) {
+  return strip.Color(0, 0, 128 + WheelPos, 128 - WheelPos);
+ } else {
+  WheelPos -= 128;
+  return strip.Color(0, 0, 255 - WheelPos, 128 - WheelPos);
+ }
+}
+
 uint32_t BastWheel(byte WheelPos) {
   if(WheelPos < 128) {
    return strip.Color(255, 0, WheelPos / 2);
@@ -818,12 +862,28 @@ uint32_t JabbaWheel(byte WheelPos) {
   }
 }
 
+// orange and white?
 uint32_t CheeseWheel(byte WheelPos) {
   if(WheelPos < 128) {
-   return strip.Color(255, 255, 0);
+   return strip.Color(36, 128 + WheelPos, 0, 128 - WheelPos);
   } else {
    WheelPos -= 128;
-   return strip.Color(255, (128 - WheelPos) / 2, 0);
+   return strip.Color(36, 255 - WheelPos, 0, 128 - WheelPos);
+  }
+}
+
+uint32_t TarnaWheel(byte WheelPos) {
+  if(WheelPos < 64) {
+   return strip.Color(0, 255 - WheelPos * 4, 255 - WheelPos * 4, 0);
+  } else if(WheelPos < 128) {
+   WheelPos -= 64;
+   return strip.Color(0, 0, 255 - WheelPos * 4, 0);
+  } else if(WheelPos < 192) {
+   WheelPos -= 128;
+   return strip.Color(36, 255 - WheelPos * 4, 0, 0);
+  } else {
+   WheelPos -= 192;
+   return strip.Color(0, 0, 255 - WheelPos * 4);
   }
 }
 
