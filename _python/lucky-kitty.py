@@ -34,43 +34,43 @@ class Game:
         if not self.debug:
             self.handle = Button(4)
         
-        self.bsound = pygame.mixer.Sound("_assets/_sounds/CLICK10A.WAV")
+        self.bsound = pygame.mixer.Sound("assets/_sounds/CLICK10A.WAV")
         
         # Default
-        self.oneup = pygame.mixer.Sound("_assets/_sounds/1up16.wav")
-        self.coin = pygame.mixer.Sound("_assets/_sounds/coin16.wav")
-        self.loss = pygame.mixer.Sound("_assets/_sounds/loss16.wav")
-        self.reel = pygame.mixer.Sound("_assets/_sounds/reel16.wav")
-        self.rstop = pygame.mixer.Sound("_assets/_sounds/rstop16.wav")
+        self.oneup = pygame.mixer.Sound("assets/_sounds/1up16.wav")
+        self.coin = pygame.mixer.Sound("assets/_sounds/coin16.wav")
+        self.loss = pygame.mixer.Sound("assets/_sounds/loss16.wav")
+        self.reel = pygame.mixer.Sound("assets/_sounds/reel16.wav")
+        self.rstop = pygame.mixer.Sound("assets/_sounds/rstop16.wav")
         
-#         self.cheesy = pygame.mixer.Sound("_assets/_sounds/cheesy16.wav")
-#         self.hth = pygame.mixer.Sound("_assets/_sounds/hth16.wav")
-#         self.nyan = pygame.mixer.Sound("_assets/_sounds/nyan16.wav")
-#         self.pinchy = pygame.mixer.Sound("_assets/_sounds/pinchy16.wav")
-#         self.scream = pygame.mixer.Sound("_assets/_sounds/scream16.wav")
-#         self.jackpot = pygame.mixer.Sound("_assets/_sounds/nyan16.wav")
+#         self.cheesy = pygame.mixer.Sound("assets/_sounds/cheesy16.wav")
+#         self.hth = pygame.mixer.Sound("assets/_sounds/hth16.wav")
+#         self.nyan = pygame.mixer.Sound("assets/_sounds/nyan16.wav")
+#         self.pinchy = pygame.mixer.Sound("assets/_sounds/pinchy16.wav")
+#         self.scream = pygame.mixer.Sound("assets/_sounds/scream16.wav")
+#         self.jackpot = pygame.mixer.Sound("assets/_sounds/nyan16.wav")
         
         # Arno
-#         self.bast = pygame.mixer.Sound("_assets/themes/arno/sounds/bast.wav")
-#         self.poutine = pygame.mixer.Sound("_assets/themes/arno/sounds/poutine.wav")
+#         self.bast = pygame.mixer.Sound("assets/themes/arno/sounds/bast.wav")
+#         self.poutine = pygame.mixer.Sound("assets/themes/arno/sounds/poutine.wav")
         
         # Emma
-#         self.shera = pygame.mixer.Sound("_assets/themes/emma/sounds/shera.wav")
-#         self.nitrous = pygame.mixer.Sound("_assets/themes/emma/sounds/nitrous.wav")
-#         self.jabba = pygame.mixer.Sound("_assets/themes/emma/sounds/jabba.wav")
-#         self.cheese = pygame.mixer.Sound("_assets/themes/emma/sounds/cheese.wav")
-#         self.gremlin = pygame.mixer.Sound("_assets/themes/emma/sounds/gremlin.wav")
-#         self.moar = pygame.mixer.Sound("_assets/themes/emma/sounds/moar.wav")
-#         self.cats = pygame.mixer.Sound("_assets/themes/emma/sounds/nixnq.wav")
+#         self.shera = pygame.mixer.Sound("assets/themes/emma/sounds/shera.wav")
+#         self.nitrous = pygame.mixer.Sound("assets/themes/emma/sounds/nitrous.wav")
+#         self.jabba = pygame.mixer.Sound("assets/themes/emma/sounds/jabba.wav")
+#         self.cheese = pygame.mixer.Sound("assets/themes/emma/sounds/cheese.wav")
+#         self.gremlin = pygame.mixer.Sound("assets/themes/emma/sounds/gremlin.wav")
+#         self.moar = pygame.mixer.Sound("assets/themes/emma/sounds/moar.wav")
+#         self.cats = pygame.mixer.Sound("assets/themes/emma/sounds/nixnq.wav")
 
         # Demma Wedding
-        self.emma = pygame.mixer.Sound("_assets/themes/emma/sounds/1-emma.wav")
-        self.dom = pygame.mixer.Sound("_assets/themes/emma/sounds/2-dom.wav")
-        self.belltent = pygame.mixer.Sound("_assets/themes/emma/sounds/3-belltent.wav")
-        self.cheesy = pygame.mixer.Sound("_assets/themes/emma/sounds/4-cheesypotatoes.wav")
-        self.nix = pygame.mixer.Sound("_assets/themes/emma/sounds/5-nixandq.wav")
-        self.tarna = pygame.mixer.Sound("_assets/themes/emma/sounds/6-tarna.wav")
-        self.penrose = pygame.mixer.Sound("_assets/themes/emma/sounds/7-penrose.wav")
+        self.emma = pygame.mixer.Sound("assets/themes/emma/sounds/1-emma.wav")
+        self.dom = pygame.mixer.Sound("assets/themes/emma/sounds/2-dom.wav")
+        self.belltent = pygame.mixer.Sound("assets/themes/emma/sounds/3-belltent.wav")
+        self.cheesy = pygame.mixer.Sound("assets/themes/emma/sounds/4-cheesypotatoes.wav")
+        self.nix = pygame.mixer.Sound("assets/themes/emma/sounds/5-nixandq.wav")
+        self.tarna = pygame.mixer.Sound("assets/themes/emma/sounds/6-tarna.wav")
+        self.penrose = pygame.mixer.Sound("assets/themes/emma/sounds/7-penrose.wav")
         
         # Default
         self.cmdLoss = b'\x07'
@@ -106,10 +106,10 @@ class Game:
         self.winPenrose = b'\x46'
         
         # Maybe change this to just be the one black line across
-        self.windowlayer = pygame.image.load("_assets/_images/gradient.png")
+        self.windowlayer = pygame.image.load("assets/_images/gradient.png")
         
         # Default + Arno
-#         self.imgpaths = ["_assets/_images/0004_nyan.png", "_assets/_images/0002_tentacle.png", "_assets/_images/0007_coin.png", "_assets/_images/0006_fireflower.png", "_assets/_images/0008_cheese-ball.png", "_assets/_images/0003_pinchy.png", "_assets/_images/0005_lucky-kitty.png", "_assets/_images/0000_bast.png", "_assets/_images/0001_poutine.png"]
+#         self.imgpaths = ["assets/_images/0004_nyan.png", "assets/_images/0002_tentacle.png", "assets/_images/0007_coin.png", "assets/_images/0006_fireflower.png", "assets/_images/0008_cheese-ball.png", "assets/_images/0003_pinchy.png", "assets/_images/0005_lucky-kitty.png", "assets/_images/0000_bast.png", "assets/_images/0001_poutine.png"]
 #         self.imgnyan = pygame.image.load(self.imgpaths[0])
 #         self.imgtent = pygame.image.load(self.imgpaths[1])
 #         self.imgcoin = pygame.image.load(self.imgpaths[2])
@@ -131,13 +131,13 @@ class Game:
 #                     self.imgpoutine]
 
         # Demma Wedding
-        self.imgpaths = ["_assets/themes/demma_wedding/images/1-emma.png",
-                        "_assets/themes/demma_wedding/images/2-dom.png",
-                        "_assets/themes/demma_wedding/images/3-belltent.png",
-                        "_assets/themes/demma_wedding/images/4-cheesypotatoes.png",
-                        "_assets/themes/demma_wedding/images/5-nixandq.png",
-                        "_assets/themes/demma_wedding/images/6-tarna.png",
-                        "_assets/themes/demma_wedding/images/7-penrose.png"]
+        self.imgpaths = ["assets/themes/demma_wedding/images/1-emma.png",
+                        "assets/themes/demma_wedding/images/2-dom.png",
+                        "assets/themes/demma_wedding/images/3-belltent.png",
+                        "assets/themes/demma_wedding/images/4-cheesypotatoes.png",
+                        "assets/themes/demma_wedding/images/5-nixandq.png",
+                        "assets/themes/demma_wedding/images/6-tarna.png",
+                        "assets/themes/demma_wedding/images/7-penrose.png"]
         self.imgEmma = pygame.image.load(self.imgpaths[0])
         self.imgDom = pygame.image.load(self.imgpaths[1])
         self.imgBelltent = pygame.image.load(self.imgpaths[2])
