@@ -452,7 +452,7 @@ class Game:
 
                     self.sendandwait(self.cmdDone)
                 elif index == 2:
-                    self.jabba.play()
+                    self.belltent.play()
                     self.sendandwait(self.winBelltent)
 
                     ser.write(self.cmdDone)
@@ -515,16 +515,19 @@ def help():
     print("-f, --fullscreen  run in fullscreen mode")
     print("-p, --pi          run in raspberry pi mode")
     print("-d, --debug       run in debug mode")
+    print("-w, --win         force winstate")
     print("Contact: everson.mike@gmail.com")
 
 if __name__ == "__main__":
     fullscreen = False
     pi = False
     debug = False
+    # Override this to test a specific win state, 0-8
+    forcewin = None
     
     try:
-        short = "hvfpd"
-        long = ["help", "version", "fullscreen", "pi", "debug"]
+        short = "hvfpdw"
+        long = ["help", "version", "fullscreen", "pi", "debug", "win"]
         opts = getopt(argv[1:], short, long)[0]
     except GetoptError:
         help()
@@ -542,6 +545,8 @@ if __name__ == "__main__":
             pi = True
         if opt in ("-d", "--debug"):
             debug = True
+        if opt in ("-w", "--win"):
+            forcewin = int(arg)
                 
          
     # Setup serial communication
@@ -564,8 +569,6 @@ if __name__ == "__main__":
 
     pygame.display.set_caption("Lucky Kitty MkII")
     pygame.mouse.set_visible(False)
-    
-    # Override this to test a specific win state, 0-8
-    forcewin = None
+
     plc = Game(debug, forcewin) 
     pygame.display.update()
