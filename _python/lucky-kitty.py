@@ -64,13 +64,13 @@ class Game:
 #         self.cats = pygame.mixer.Sound("assets/themes/emma/sounds/nixnq.wav")
 
         # Demma Wedding
-        self.emma = pygame.mixer.Sound("assets/themes/emma/sounds/1-emma.wav")
-        self.dom = pygame.mixer.Sound("assets/themes/emma/sounds/2-dom.wav")
-        self.belltent = pygame.mixer.Sound("assets/themes/emma/sounds/3-belltent.wav")
-        self.cheesy = pygame.mixer.Sound("assets/themes/emma/sounds/4-cheesypotatoes.wav")
-        self.nix = pygame.mixer.Sound("assets/themes/emma/sounds/5-nixandq.wav")
-        self.tarna = pygame.mixer.Sound("assets/themes/emma/sounds/6-tarna.wav")
-        self.penrose = pygame.mixer.Sound("assets/themes/emma/sounds/7-penrose.wav")
+        self.emma = pygame.mixer.Sound("assets/themes/demma_wedding/sounds/1-emma.wav")
+        self.dom = pygame.mixer.Sound("assets/themes/demma_wedding/sounds/2-dom.wav")
+        self.belltent = pygame.mixer.Sound("assets/themes/demma_wedding/sounds/3-belltent.wav")
+        self.cheesy = pygame.mixer.Sound("assets/themes/demma_wedding/sounds/4-cheesypotatoes.wav")
+        self.nix = pygame.mixer.Sound("assets/themes/demma_wedding/sounds/5-nixandq.wav")
+        self.tarna = pygame.mixer.Sound("assets/themes/demma_wedding/sounds/6-tarna.wav")
+        self.penrose = pygame.mixer.Sound("assets/themes/demma_wedding/sounds/7-penrose.wav")
         
         # Default
         self.cmdLoss = b'\x07'
