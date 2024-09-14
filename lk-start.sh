@@ -3,8 +3,10 @@
 cd /home/pi/Documents/Projects/pithon/luckykitty/_python
 
 if [ -z "$1" ]; then
+  echo "No argument passed"
   python3 lucky-kitty.py -p -f
 else
-  python3 lucky-kitty.py -p -f -w "$1"
+  echo "Argument passed: $1"
+  python3 lucky-kitty.py -p -f --win="$1"
 fi
 
