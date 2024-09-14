@@ -529,7 +529,9 @@ if __name__ == "__main__":
         short = "hvfpdw"
         long = ["help", "version", "fullscreen", "pi", "debug", "win"]
         opts = getopt(argv[1:], short, long)[0]
-    except GetoptError:
+    except GetoptError as e:
+        print("Problem getting the options")
+        print(e)
         help()
         exit()
     for opt, arg in opts:
