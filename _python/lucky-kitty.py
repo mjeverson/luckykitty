@@ -269,7 +269,7 @@ class Game:
         middle_slot = [3, 4 ,5]
         right_slot = [6, 7 ,8]
 
-        used_win_index = [outcome] if outcome else []
+        used_win_index = [self.imgpaths.index(outcome)] if outcome else []
 
         for slot in [left_slot, middle_slot, right_slot]:
             used_slot_index = []
