@@ -18,19 +18,20 @@ from getopt import getopt, GetoptError
 import serial
 from gpiozero import Button
 
-VERSION = "0.1"
+VERSION = "0.2"
 
 # the game###########################
 class Game:
     def __init__(self, dbg, fw):
+        self.initial_render = True
         self.wins = None
         self.show = {}
         self.debug = dbg
         self.forcewin = fw
         
         self.screen = screen
-        self.xoffsets = [0, 214, 428]
-        self.yoffsets = [0, 160, 320]
+        self.xoffsets = [-6, 214, 434]
+        self.yoffsets = [-2, 160, 322]
         # COMMENT OUT ON OSX FOR TESTING
         if not self.debug:
             self.handle = Button(4)
@@ -238,39 +239,37 @@ class Game:
     def randi(self):
         self.show = {}    
             
-        ##todo(mje): tweak the odds for outcomes
+        # Outcome odds
         rand = randrange(1, 100)
         outcome = None
-        if 1 <= rand <= 10:
-            outcome = self.imgpaths[0]
-        elif 11 <= rand <= 20:
-            outcome = self.imgpaths[1]
-        elif 21 <= rand <= 30:
-            outcome = self.imgpaths[2]
-        elif 31 <= rand <= 40:
-            outcome = self.imgpaths[3]
-        elif 41 <= rand <= 50:
-            outcome = self.imgpaths[4]
-        elif 51 <= rand <= 60:
-            outcome = self.imgpaths[5]
-        elif 61 <= rand <= 70:
-            outcome = self.imgpaths[6]
-        
-        #DEBUG: Uncomment this line and comment the rest to test a specific outcome
+
+        if not self.initial_render:
+            if 1 <= rand <= 10:
+                outcome = self.imgpaths[0]
+            elif 11 <= rand <= 20:
+                outcome = self.imgpaths[1]
+            elif 21 <= rand <= 30:
+                outcome = self.imgpaths[2]
+            elif 31 <= rand <= 40:
+                outcome = self.imgpaths[3]
+            elif 41 <= rand <= 50:
+                outcome = self.imgpaths[4]
+            elif 51 <= rand <= 60:
+                outcome = self.imgpaths[5]
+            elif 61 <= rand <= 70:
+                outcome = self.imgpaths[6]
+
+        self.initial_render = False
+
         if self.forcewin is not None:
             outcome = self.imgpaths[self.forcewin]
 
-        left_slot = [0, 3 ,6]
-        middle_slot = [1, 4 ,7]
-        right_slot = [2, 5 ,8]
-
-#         for index, value in enumerate(range(9)):
-# random.choice(range(len(self.imgpaths))
+        # Display the correct slots without duplication
+        left_slot = [0, 1 ,2]
+        middle_slot = [3, 4 ,5]
+        right_slot = [6, 7 ,8]
 
         used_win_index = [outcome] if outcome else []
-
-#         if outcome is None:
-#             used_win_index = []
 
         for slot in [left_slot, middle_slot, right_slot]:
             used_slot_index = []
@@ -280,44 +279,14 @@ class Game:
 
                 if index == 1:
                     #win_slot
-                    val = outcome if outcome else random.choice(possible_options)
-                    self.show[space] = val
+                    val = self.imgpaths.index(outcome) if outcome else random.choice(possible_options)
+                    self.show[space] = outcome if outcome else self.imgpaths[val]
                     used_win_index.append(val)
                 else:
                     val = random.choice(possible_options)
-                    self.show[space] = val
+                    self.show[space] = self.imgpaths[val]
                     used_slot_index.append(val)
 
-#         else:
-#             used_win_index = [outcome]
-#
-#             for slot in [left_slot, middle_slot, right_slot]:
-#                 used_slot_index = []
-#
-#                 for index, space in enumerate(slot):
-#                     if index == 1:
-#                         self.show[space] = outcome
-#                     else:
-#                         #todo(mje): Generate a random number that isn't outcome and hasn't been used
-#                         self.show[space] = val
-#                         used_slot_index.append(val)
-#
-#         for i in range(9):
-#             idx = randrange(7)
-#             self.show[i] = self.imgpaths[idx]
-#
-#             # Most of this code is to ensure we don't display too many matching symbols regardless of win condition
-#             #todo(mje): Nicer - pick an outcome, then for each of the other slots randomize until they dont match the middle ones
-#             if outcome is None and i == 4 and idx == self.show[1]:
-#                 newIdx = idx % 6
-#                 self.show[i] = self.imgpaths[newIdx]
-#             elif outcome is not None and i in {1, 4, 7}:
-#                 self.show[i] = outcome
-#             elif outcome is not None and i in {0, 3, 6} and self.show[i] == outcome:
-#                 self.show[i] = self.imgpaths[(idx + 1) % 6]
-#             elif outcome is not None and i in {2, 5, 8} and self.show[i] == outcome:
-#                 self.show[i] = self.imgpaths[(idx + 2) % 6]
-   
     # Checks if any of your lines have won
     def check(self):
         if self.show[1] == self.show[4] == self.show[7]:
@@ -339,74 +308,6 @@ class Game:
         if not self.debug:
             if self.wins is not None:
                 index = self.imgpaths.index(self.wins)
-                # Default + Arno
-#                 if index == 0:
-#                     self.nyan.play()
-#                     self.sendandwait(self.winNyan)
-#                     self.sendandwait(self.cmdDone) #maybe a reset instead, no need to wait?
-#                 elif index == 1:
-#                     self.scream.play()
-#                     self.sendandwait(self.winTentacle)
-#                     self.sendandwait(self.cmdDone)
-#                 elif index == 2:
-#                     self.coin.play()
-#                     self.sendandwait(self.winCoin)
-#                     self.oneup.play()
-#                     
-#                     while pygame.mixer.get_busy():
-#                         pass
-#                     
-#                     self.sendandwait(self.cmdDone)
-#                 elif index == 3:
-#                     self.hth.play()
-#                     self.sendandwait(self.winFire)
-#                     self.sendandwait(self.cmdDone)
-#                 elif index == 4:
-#                     self.cheesy.play()
-#                     self.sendandwait(self.winCheese)
-#                     self.sendandwait(self.cmdDone)
-#                 elif index == 5:
-#                     self.pinchy.play()
-#                     self.sendandwait(self.winPinchy)
-#                     self.sendandwait(self.cmdDone)
-#                 elif index == 6:
-#                     self.jackpot.play()
-#                     # Do all the lights and fire
-#                     self.sendandwait(self.winJackpot) 
-#                     
-#                     ser.write(self.cmdDone)
-#                     # play the coin sound and dispense a coin 3 times
-#                     for _ in range(3):
-#                         self.coin.play()
-#                         while pygame.mixer.get_busy():
-#                             pass
-# 
-#                     self.oneup.play()
-#                     while pygame.mixer.get_busy():
-#                         pass
-# 
-#                     self.sendandwait(self.cmdDone)
-#                 elif index == 7:
-#                     self.bast.play()
-#                     self.sendandwait(self.winBast)
-#                     
-#                     ser.write(self.cmdDone)
-#                     self.coin.play()
-#                     while pygame.mixer.get_busy():
-#                         pass
-#                     
-#                     self.sendandwait(self.cmdDone)
-#                 elif index == 8:
-#                     self.poutine.play()
-#                     self.sendandwait(self.winPoutine)
-#     
-#                     ser.write(self.cmdDone)
-#                     self.coin.play()
-#                     while pygame.mixer.get_busy():
-#                         pass
-#                     
-#                     self.sendandwait(self.cmdDone)
-
                 # Demma wedding
                 if index == 0:
                     self.emma.play()
@@ -417,7 +318,7 @@ class Game:
                     while pygame.mixer.get_busy():
                         pass
 
-                    self.sendandwait(self.cmdDone) 
+                    self.sendandwait(self.cmdDone)
                 elif index == 1:
                     self.dom.play()
                     self.sendandwait(self.winDom)
@@ -531,8 +432,6 @@ if __name__ == "__main__":
                 
          
     # Setup serial communication
-    #TODO(MJE): How will this work when we boot up the pi cold, will we need to wait?
-    # COMMENT OUT ON OSX FOR TESTING
     if not debug:
         if pi:
             ser = serial.Serial('/dev/ttyACM0', 9600, timeout=5)
