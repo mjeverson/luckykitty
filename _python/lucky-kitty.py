@@ -6,6 +6,7 @@
 # python3 lucky-kitty.py -d
 # Override forcewin = None to force a particular winstate for testing
 # Runs on startup via ~/.config/autostart/lk.desktop
+# Uses pygame 2.6 (prev 1.9.4)
 
 import pygame
 import random
@@ -30,12 +31,12 @@ class Game:
         self.forcewin = fw
         
         self.screen = screen
-        self.xoffsets = [-6, 214, 434]
+        self.xoffsets = [74, 294, 514]
         self.yoffsets = [-2, 160, 322]
         # COMMENT OUT ON OSX FOR TESTING
         if not self.debug:
             self.handle = Button(4)
-        
+ 
         self.bsound = pygame.mixer.Sound("assets/_sounds/CLICK10A.WAV")
         
         # Default
@@ -98,7 +99,7 @@ class Game:
         self.randi()
         self.screen.fill([0, 0, 0])
         self.drawl()
-        self.screen.blit(self.windowlayer, (0, 0))
+        self.screen.blit(self.windowlayer, (50, 0))
         pygame.display.update()
         
         # mainloop
@@ -124,7 +125,7 @@ class Game:
         self.roll(self.img)
         #reused
         self.drawl()
-        self.screen.blit(self.windowlayer, (0, 0))
+        self.screen.blit(self.windowlayer, (50, 0))
         #/reused
         pygame.display.update()
         self.winner()
@@ -140,7 +141,7 @@ class Game:
         
         # roll time
         #Todo: understand what this timing actually is (higher number is longer)
-        rolla = randrange(30, 50)
+        rolla = randrange(20, 40)
         rollb = randrange(rolla+1, rolla+5)
         rollc = randrange(rollb+1, rollb+5)
         
@@ -217,7 +218,7 @@ class Game:
                 self.screen.blit(rollcf[len(rollcf)-2], (self.xoffsets[2], self.yoffsets[1]))
                 self.screen.blit(rollcf[len(rollcf)-1], (self.xoffsets[2], self.yoffsets[2]))
             
-            self.screen.blit(self.windowlayer, (0, 0))
+            self.screen.blit(self.windowlayer, (50, 0))
             pygame.display.update()
             rollc = rollc - 1
         self.reel.stop()
@@ -394,7 +395,7 @@ if __name__ == "__main__":
     fullscreen = False
     pi = False
     debug = False
-    # Override this to test a specific win state, 0-8
+    # Overrideind this to test a specific win state, 0-8
     forcewin = None
     
     try:
