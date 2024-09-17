@@ -8,6 +8,7 @@
 # Runs on startup via ~/.config/autostart/lk.desktop
 
 import pygame
+import random
 from pygame.locals import *
 from random import randrange
 from sys import argv
@@ -42,26 +43,6 @@ class Game:
         self.loss = pygame.mixer.Sound("assets/_sounds/loss16.wav")
         self.reel = pygame.mixer.Sound("assets/_sounds/reel16.wav")
         self.rstop = pygame.mixer.Sound("assets/_sounds/rstop16.wav")
-        
-#         self.cheesy = pygame.mixer.Sound("assets/_sounds/cheesy16.wav")
-#         self.hth = pygame.mixer.Sound("assets/_sounds/hth16.wav")
-#         self.nyan = pygame.mixer.Sound("assets/_sounds/nyan16.wav")
-#         self.pinchy = pygame.mixer.Sound("assets/_sounds/pinchy16.wav")
-#         self.scream = pygame.mixer.Sound("assets/_sounds/scream16.wav")
-#         self.jackpot = pygame.mixer.Sound("assets/_sounds/nyan16.wav")
-        
-        # Arno
-#         self.bast = pygame.mixer.Sound("assets/themes/arno/sounds/bast.wav")
-#         self.poutine = pygame.mixer.Sound("assets/themes/arno/sounds/poutine.wav")
-        
-        # Emma
-#         self.shera = pygame.mixer.Sound("assets/themes/emma/sounds/shera.wav")
-#         self.nitrous = pygame.mixer.Sound("assets/themes/emma/sounds/nitrous.wav")
-#         self.jabba = pygame.mixer.Sound("assets/themes/emma/sounds/jabba.wav")
-#         self.cheese = pygame.mixer.Sound("assets/themes/emma/sounds/cheese.wav")
-#         self.gremlin = pygame.mixer.Sound("assets/themes/emma/sounds/gremlin.wav")
-#         self.moar = pygame.mixer.Sound("assets/themes/emma/sounds/moar.wav")
-#         self.cats = pygame.mixer.Sound("assets/themes/emma/sounds/nixnq.wav")
 
         # Demma Wedding
         self.emma = pygame.mixer.Sound("assets/themes/demma_wedding/sounds/1-emma.wav")
@@ -75,26 +56,6 @@ class Game:
         # Default
         self.cmdLoss = b'\x07'
         self.cmdDone = b'\x09'
-#         self.winNyan = b'\x00'
-#         self.winTentacle = b'\x01'
-#         self.winCoin = b'\x02'
-#         self.winFire = b'\x03'
-#         self.winCheese = b'\x04'
-#         self.winPinchy = b'\x05'
-#         self.winJackpot = b'\x06'
-
-        # Arno
-#         self.winBast = b'\x20'
-#         self.winPoutine = b'\x21'
-
-        # Emma
-#         self.winShera = b'\x30'
-#         self.winNitrous = b'\x31'
-#         self.winJabba = b'\x32'
-#         self.winCheese = b'\x33'
-#         self.winGremlin = b'\x34'
-#         self.winMoar = b'\x36'
-#         self.winCats = b'\x38'
 
         # Demma Wedding
         self.winEmma = b'\x40'
@@ -107,28 +68,6 @@ class Game:
         
         # Maybe change this to just be the one black line across
         self.windowlayer = pygame.image.load("assets/_images/gradient.png")
-        
-        # Default + Arno
-#         self.imgpaths = ["assets/_images/0004_nyan.png", "assets/_images/0002_tentacle.png", "assets/_images/0007_coin.png", "assets/_images/0006_fireflower.png", "assets/_images/0008_cheese-ball.png", "assets/_images/0003_pinchy.png", "assets/_images/0005_lucky-kitty.png", "assets/_images/0000_bast.png", "assets/_images/0001_poutine.png"]
-#         self.imgnyan = pygame.image.load(self.imgpaths[0])
-#         self.imgtent = pygame.image.load(self.imgpaths[1])
-#         self.imgcoin = pygame.image.load(self.imgpaths[2])
-#         self.imgfire = pygame.image.load(self.imgpaths[3])
-#         self.imgcheese = pygame.image.load(self.imgpaths[4])
-#         self.imgpinchy = pygame.image.load(self.imgpaths[5])
-#         self.imgjackpot = pygame.image.load(self.imgpaths[6])
-#         self.imgbast = pygame.image.load(self.imgpaths[7])
-#         self.imgpoutine = pygame.image.load(self.imgpaths[8])
-
-#         self.img = [self.imgnyan,
-#                     self.imgtent,
-#                     self.imgcoin,
-#                     self.imgfire,
-#                     self.imgcheese,
-#                     self.imgpinchy,
-#                     self.imgjackpot,
-#                     self.imgbast,
-#                     self.imgpoutine]
 
         # Demma Wedding
         self.imgpaths = ["assets/themes/demma_wedding/images/1-emma.png",
@@ -316,30 +255,68 @@ class Game:
             outcome = self.imgpaths[5]
         elif 61 <= rand <= 70:
             outcome = self.imgpaths[6]
-#         elif 51 <= rand <= 57:
-#             outcome = self.imgpaths[7]
-#         elif 58 <= rand <= 65:
-#             outcome = self.imgpaths[8]
         
         #DEBUG: Uncomment this line and comment the rest to test a specific outcome
         if self.forcewin is not None:
             outcome = self.imgpaths[self.forcewin]
-            
-        for i in range(9):
-            idx = randrange(7)
-            self.show[i] = self.imgpaths[idx]
-            
-            # Most of this code is to ensure we don't display too many matching symbols regardless of win condition
-            #todo(mje): Nicer - pick an outcome, then for each of the other slots randomize until they dont match the middle ones
-            if outcome is None and i == 4 and idx == self.show[1]:
-                newIdx = idx % 6
-                self.show[i] = self.imgpaths[newIdx]
-            elif outcome is not None and i in {1, 4, 7}:
-                self.show[i] = outcome
-            elif outcome is not None and i in {0, 3, 6} and self.show[i] == outcome:
-                self.show[i] = self.imgpaths[(idx + 1) % 6]
-            elif outcome is not None and i in {2, 5, 8} and self.show[i] == outcome:
-                self.show[i] = self.imgpaths[(idx + 2) % 6]
+
+        left_slot = [0, 3 ,6]
+        middle_slot = [1, 4 ,7]
+        right_slot = [2, 5 ,8]
+
+#         for index, value in enumerate(range(9)):
+# random.choice(range(len(self.imgpaths))
+
+        used_win_index = [outcome] if outcome else []
+
+#         if outcome is None:
+#             used_win_index = []
+
+        for slot in [left_slot, middle_slot, right_slot]:
+            used_slot_index = []
+
+            for index, space in enumerate(slot):
+                possible_options = [v for v in range(len(self.imgpaths)) if v not in used_win_index and v not in used_slot_index]
+
+                if index == 1:
+                    #win_slot
+                    val = outcome if outcome else random.choice(possible_options)
+                    self.show[space] = val
+                    used_win_index.append(val)
+                else:
+                    val = random.choice(possible_options)
+                    self.show[space] = val
+                    used_slot_index.append(val)
+
+#         else:
+#             used_win_index = [outcome]
+#
+#             for slot in [left_slot, middle_slot, right_slot]:
+#                 used_slot_index = []
+#
+#                 for index, space in enumerate(slot):
+#                     if index == 1:
+#                         self.show[space] = outcome
+#                     else:
+#                         #todo(mje): Generate a random number that isn't outcome and hasn't been used
+#                         self.show[space] = val
+#                         used_slot_index.append(val)
+#
+#         for i in range(9):
+#             idx = randrange(7)
+#             self.show[i] = self.imgpaths[idx]
+#
+#             # Most of this code is to ensure we don't display too many matching symbols regardless of win condition
+#             #todo(mje): Nicer - pick an outcome, then for each of the other slots randomize until they dont match the middle ones
+#             if outcome is None and i == 4 and idx == self.show[1]:
+#                 newIdx = idx % 6
+#                 self.show[i] = self.imgpaths[newIdx]
+#             elif outcome is not None and i in {1, 4, 7}:
+#                 self.show[i] = outcome
+#             elif outcome is not None and i in {0, 3, 6} and self.show[i] == outcome:
+#                 self.show[i] = self.imgpaths[(idx + 1) % 6]
+#             elif outcome is not None and i in {2, 5, 8} and self.show[i] == outcome:
+#                 self.show[i] = self.imgpaths[(idx + 2) % 6]
    
     # Checks if any of your lines have won
     def check(self):
