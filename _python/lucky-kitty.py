@@ -347,7 +347,7 @@ class Game:
                     self.coin.play()
                     self.sendandwait(self.winTarna)
 
-                    self.emma.play()
+                    self.tarna.play()
                     self.sendandwait(self.cmdDone)
 
                     ser.write(self.cmdDone)
