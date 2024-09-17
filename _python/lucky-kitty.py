@@ -344,6 +344,8 @@ class Game:
 
                     self.sendandwait(self.cmdDone)
                 elif index == 3:
+                    #todo(mje): Tracks play back slower than intended...
+                    # try using pygame 2.0 and  https://www.pygame.org/docs/ref/music.html
                     self.cheesy.play()
                     self.sendandwait(self.winCheesy)
                     self.sendandwait(self.cmdDone)
