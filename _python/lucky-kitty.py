@@ -310,39 +310,29 @@ class Game:
                 index = self.imgpaths.index(self.wins)
                 # Demma wedding
                 if index == 0:
-                    self.emma.play()
+                    self.coin.play()
                     self.sendandwait(self.winEmma)
 
-                    ser.write(self.cmdDone)
-                    self.coin.play()
-                    while pygame.mixer.get_busy():
-                        pass
-
+                    self.emma.play()
                     self.sendandwait(self.cmdDone)
+
+                    ser.write(self.cmdDone)
                 elif index == 1:
-                    self.dom.play()
+                    self.coin.play()
                     self.sendandwait(self.winDom)
 
-                    ser.write(self.cmdDone)
-                    self.coin.play()
-                    while pygame.mixer.get_busy():
-                        pass
-
+                    self.dom.play()
                     self.sendandwait(self.cmdDone)
+
+                    ser.write(self.cmdDone)
                 elif index == 2:
-                    self.belltent.play()
+                    self.coin.play()
                     self.sendandwait(self.winBelltent)
 
-                    # Wait for belltent track to finish
-                    while pygame.mixer.get_busy():
-                        pass
-                    ser.write(self.cmdDone)
-
-                    self.coin.play()
-                    while pygame.mixer.get_busy():
-                        pass
-
+                    self.belltent.play()
                     self.sendandwait(self.cmdDone)
+
+                    ser.write(self.cmdDone)
                 elif index == 3:
                     #todo(mje): Tracks play back slower than intended...
                     # try using pygame 2.0 and  https://www.pygame.org/docs/ref/music.html
@@ -354,15 +344,13 @@ class Game:
                     self.sendandwait(self.winNix)
                     self.sendandwait(self.cmdDone)
                 elif index == 5:
-                    self.tarna.play()
+                    self.coin.play()
                     self.sendandwait(self.winTarna)
 
-                    ser.write(self.cmdDone)
-                    self.coin.play()
-                    while pygame.mixer.get_busy():
-                        pass
-
+                    self.emma.play()
                     self.sendandwait(self.cmdDone)
+
+                    ser.write(self.cmdDone)
                 elif index == 6:
                     self.penrose.play()
                     self.sendandwait(self.winPenrose)
